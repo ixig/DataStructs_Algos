@@ -1,3 +1,8 @@
+'''
+Find A/All Combinations of a subset, not to exceed a given size, of numbers
+from a given set, that sums up maximally to a target
+'''
+
 def max_combination(selection, max_choices, target):
 
     def find_solution(choices):

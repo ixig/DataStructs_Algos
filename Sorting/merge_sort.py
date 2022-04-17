@@ -1,6 +1,11 @@
+'''
+Merge Sort
+'''
+
 from sort_check import sort_check, sort_check1
 import numpy as np
 
+# Merging cannot be performed in-place
 def merge(l1, l2):
     l1_idx, l2_idx = 0, 0
     l1_len, l2_len = len(l1), len(l2)
@@ -23,6 +28,7 @@ def merge(l1, l2):
         idx += 1
     return new_l.tolist()
 
+# Not in-place, returns a new sorted list
 def merge_sort(l):
     if len(l) == 1:
         return l
@@ -30,6 +36,7 @@ def merge_sort(l):
     l1, l2 = merge_sort(l[:mid_idx]), merge_sort(l[mid_idx:])
     return merge(l1, l2)
 
+# Wrappper to mimic in-place sorting
 def merge_sort_inplace(l):
     new_l = merge_sort(l)
     l.clear()

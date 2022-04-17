@@ -1,3 +1,8 @@
+'''
+Helper Tree Utilities for Making (Sorted/Unsorted), Printing and Checking
+Binary Trees
+'''
+
 from random import choice, randint
 
 class Node:
@@ -5,9 +10,10 @@ class Node:
         self.value = value
         self.left = left
         self.right = right
-        self.min_value = min_value
-        self.max_value = max_value
+        self.min_value = min_value  # Used only for building tree
+        self.max_value = max_value  # "
 
+# Internal function -- do not call! May raise Exception.
 def _make_tree(num_nodes, min_val, max_val, unique_vals, ret_vals, sorted):
 
     def make_node(min_val=min_val, max_val=max_val):
@@ -76,7 +82,11 @@ def check_sorted(node):
             return False
         return check_sorted(node.left) and check_sorted(node.right)
 
+
 if __name__ == '__main__':
     for _ in range(50):
         tree, tree_vals = make_tree(6, unique_vals=True, ret_vals=True, sorted=True)
         assert check_sorted(tree)
+    for _ in range(5):
+        tree, tree_vals = make_tree(6, unique_vals=True, ret_vals=True, sorted=False)
+        assert not check_sorted(tree)

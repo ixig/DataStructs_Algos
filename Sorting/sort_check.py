@@ -1,3 +1,7 @@
+'''
+Helper utilities for Checking Sorting implementations
+'''
+
 from random import randint
 
 def sort_check(sort):

@@ -1,3 +1,7 @@
+'''
+Triangular Array Implementation
+'''
+
 import numpy as np
 
 class TriArray:
@@ -5,7 +9,7 @@ class TriArray:
         self.dim = dim
         num_elements = dim * (dim - 1) // 2
         # self.array = np.array(num_elements)
-        self.array = np.arange(1, num_elements + 1)
+        self.array = np.arange(1, num_elements + 1)  # [DEBUG]
 
     @staticmethod
     def idx(row, col):
@@ -18,8 +22,10 @@ class TriArray:
             row, col = col, row
         return self.array[self.idx(row, col)]
 
-a = TriArray(4)
-print(a.get(1, 1))
-print(a.get(1, 0))
-print(a.get(3, 2))
-print(a.get(2, 3))
+
+if __name__ == '__main__':
+    a = TriArray(4)
+    print(a.get(1, 1))
+    print(a.get(1, 0))
+    print(a.get(3, 2))
+    print(a.get(2, 3))

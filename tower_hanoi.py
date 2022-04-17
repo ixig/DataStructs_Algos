@@ -1,3 +1,10 @@
+'''
+Tower of Hanoi
+Move a set of discs from a starting peg to an ending peg, given one temporary
+peg. A Larger disc cannot be placed on top of smaller disc. The starting peg
+has the discs in the valid order (lagest at bottom, smallest on top).
+'''
+
 def hanoi1(stacks, src, dst, tmp):  # Recursive
 
     def print_stacks():  # [DEBUG]

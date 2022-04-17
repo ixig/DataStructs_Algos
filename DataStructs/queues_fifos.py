@@ -1,3 +1,7 @@
+'''
+Queue/FIFO (Linear & Circular) Implementation
+'''
+
 class Cell:
     def __init__(self, value, prev, next):
         self.value = value
@@ -74,16 +78,20 @@ class CircularQueue():
         else:
             return '[]'
 
-q = Queue()
-# q = CircularQueue()
-q.enqueue(1)
-q.enqueue(2); print(q)
-print(q.dequeue()); print(q)
-q.enqueue(3); print(q)
-print(q.dequeue()); print(q)
-print(q.dequeue()); print(q)
-print(q.dequeue())
-q.enqueue(4)
-q.enqueue(5); print(q)
-print(q.dequeue())
-print(q.dequeue())
+def queue_check():
+    for q in [Queue(), CircularQueue()]:
+        q.enqueue(1)
+        q.enqueue(2); print(q)
+        print(q.dequeue()); print(q)
+        q.enqueue(3); print(q)
+        print(q.dequeue()); print(q)
+        print(q.dequeue()); print(q)
+        print(q.dequeue())
+        q.enqueue(4)
+        q.enqueue(5); print(q)
+        print(q.dequeue())
+        print(q.dequeue())
+
+
+if __name__ == '__main__':
+    queue_check()

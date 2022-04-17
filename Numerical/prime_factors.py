@@ -1,3 +1,7 @@
+'''
+Prime Factorization
+'''
+
 import math
 
 # O(sqrt(2)**N), where N: #bits to represent n

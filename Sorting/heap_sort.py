@@ -1,7 +1,11 @@
-import math
+'''
+Heap Sort
+'''
+
+from math import inf
 from sort_check import sort_check, sort_check1
 
-INF = math.inf
+INF = inf
 
 def heap_sort(heap):
 

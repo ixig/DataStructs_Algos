@@ -1,5 +1,11 @@
+'''
+Quick Sort
+'''
+
 from sort_check import sort_check, sort_check1
 
+# Automatically selects a pivot value, then moves values smaller/larger than
+# the pivot value to left/right ends of the list.
 def pivot_sort(l, begin, end):
 
     def get_pivot_idx():
@@ -44,17 +50,19 @@ def pivot_sort(l, begin, end):
     l[hole] = pivot_value
     return hole
 
-def quick_sort(l, begin, end):
+# Performs the pivot rearragement and then calls quicksort recursively on both
+# halves.
+def _quick_sort(l, begin, end):
     if begin == end:
         return
     pivot_idx = pivot_sort(l, begin, end)
     if pivot_idx > begin:
-        quick_sort(l, begin, pivot_idx - 1)
+        _quick_sort(l, begin, pivot_idx - 1)
     if pivot_idx < end:
-        quick_sort(l, pivot_idx + 1, end)
+        _quick_sort(l, pivot_idx + 1, end)
 
-def quick_sort_wrap(l):
-    quick_sort(l, 0, len(l) - 1)
+def quick_sort(l):
+    _quick_sort(l, 0, len(l) - 1)
 
-sort_check1(quick_sort_wrap, 0b111)
-sort_check(quick_sort_wrap)
+sort_check1(quick_sort, 0b111)
+sort_check(quick_sort)

@@ -1,3 +1,8 @@
+'''
+GCM, LCM
+'''
+
+# Euclid's Algorithm
 def gcd(a, b):
     if b == 0:
         return a

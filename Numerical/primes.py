@@ -1,6 +1,11 @@
+'''
+Finding and Testing Primes
+'''
+
 from random import randint
 import numpy as np
 
+# Fermat's Little Theorem
 def fermat_test_prime(p, k=20):
     prev_k = set()
     for _ in range(k):

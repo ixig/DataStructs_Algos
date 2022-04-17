@@ -1,3 +1,9 @@
+'''
+Given some number of shunting tracks, sort the carriages of a train so that
+carriages going to the same destination are grouped together and in sorted
+order, e.g. [3, 3, 2, 1, 1, 1].
+'''
+
 from random import randint
 import math
 
@@ -12,7 +18,7 @@ def is_sorted(l):  # Descending Sorted
     return True
 
 def train_sort(input):
-    NUM_STACKS = 3
+    NUM_STACKS = 3  # Num of Shunting Tracks (incl'd Outgoing)
 
     stacks = [ [] for _ in range(NUM_STACKS) ]
     input_stack = input[:]
@@ -30,7 +36,7 @@ def train_sort(input):
     def best_stack(stacks, x):
         return min(stacks, key=lambda x: -INF if not x else x[-1])
 
-    def phase1():
+    def phase1():  # Distribute Carriages over shunting stacks
         assert all([len(stack) == 0 for stack in stacks])
         while len(input_stack):
             x = input_stack.pop()
@@ -40,12 +46,12 @@ def train_sort(input):
             else:
                 target_stack.append(x)
 
-    def phase2():
+    def phase2():  # Reassemble Carriages
         assert len(input_stack) == 0
         for _ in range(len_input):
             input_stack.append(max_stack(stacks).pop())
 
-    rounds = 0
+    rounds = 0  # [DEBUG]
     while not is_sorted(input_stack):
         print('.', end='')
         phase1()

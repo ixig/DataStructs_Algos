@@ -1,6 +1,10 @@
+'''
+Hash Table Implementation
+'''
+
 # Optimizations
 # i. Open Addressing
-# ii. Double Hashing (Collisions)
+# ii. Double Hashing (Collision Resolution)
 
 class HashTable:
     def __init__(self, size=256, max_tries=3):
@@ -12,17 +16,14 @@ class HashTable:
     def add(self, key: str):
         assert isinstance(key, str)
         hash_pri = hash(key) % self.size
-        # print(key, ':', hash_pri, end=' ')
         if self.table[hash_pri] == None or self.removed[hash_pri]:
             self.table[hash_pri] = key
         else:
             hash_sec = hash(key + '@@@') % self.size
-            # print(hash_sec, '!', end=' ')
             tries = 0
             while tries < self.max_tries:
                 tries += 1
                 addr = (hash_pri + hash_sec * tries) % self.size
-                # print(addr, end=' ')
                 if self.table[addr] == None or self.removed[addr]:
                     self.table[addr] = key
                     break
@@ -34,7 +35,6 @@ class HashTable:
     
     def remove(self, key: str):
         hash_pri = hash(key) % self.size
-        # print(key, '<', hash_pri, end=' ')
         if self.table[hash_pri] == key:
             self.removed[hash_pri] = True
         elif self.table[hash_pri] == None:
@@ -45,7 +45,6 @@ class HashTable:
             while tries < self.max_tries:
                 tries += 1
                 addr = (hash_pri + hash_sec * tries) % self.size
-                # print(addr, end=' ')
                 if self.table[addr] == key:
                     self.removed[addr] = True
                     break
@@ -58,12 +57,9 @@ class HashTable:
 
     def is_in(self, key: str):
         hash_pri = hash(key) % self.size
-        # print(key, '?', hash_pri, end=' ')
         if self.table[hash_pri] == None:
-            # print()
             return False
         elif self.table[hash_pri] == key and not self.removed[hash_pri]:
-            # print()
             return True
         else:
             hash_sec = hash(key + '@@@') % self.size
@@ -71,12 +67,9 @@ class HashTable:
             while tries < self.max_tries:
                 tries += 1
                 addr = (hash_pri + hash_sec * tries) % self.size
-                # print(addr, end=' ')
                 if self.table[addr] == None:
-                    # print()
                     return False
                 elif self.table[addr] == key and not self.removed[addr]:
-                    # print()
                     return True
             else:
                 # print()
@@ -111,4 +104,7 @@ def hash_check():
         for x in [randint(1000, 1250) for _ in range(len(l))]:
             assert not t.is_in(str(x))
 
-hash_check()
+
+if __name__ == '__main__':
+    hash_check1()
+    hash_check()

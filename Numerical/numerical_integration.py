@@ -1,9 +1,13 @@
-import numpy as np
+'''
+Numerical Integration using Trapezoidal Approximation
+'''
 
+import numpy as np
 
 def fn(x):
     return x
 
+# Basic implementation, No optimizations
 def integrate1(fn, xmin, xmax, N):
     dx = (xmax - xmin) / N
     eps = 0.01 * dx
@@ -13,6 +17,7 @@ def integrate1(fn, xmin, xmax, N):
         area += dx * (fn(x) + fn(x + dx)) / 2
     return area
 
+# Optimization #1: Factor out constants multiplication
 def integrate2(fn, xmin, xmax, N):
     dx = (xmax - xmin) / N
     eps = 0.01 * dx
@@ -23,6 +28,7 @@ def integrate2(fn, xmin, xmax, N):
     area = area * dx / 2
     return area
 
+# Optimization #2: Remove double calls to Fn(x)
 def integrate3(fn, xmin, xmax, N):
     dx = (xmax - xmin) / N
     eps = 0.01 * dx

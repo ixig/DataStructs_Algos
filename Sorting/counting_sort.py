@@ -1,3 +1,8 @@
+'''
+Counting Sort
+Faster than O(NLogN)!
+'''
+
 import numpy as np
 from sort_check import sort_check, sort_check1
 

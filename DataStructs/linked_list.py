@@ -1,5 +1,8 @@
-from operator import itemgetter
+'''
+Linked-List and Sorted Linked-List Implementations
+'''
 
+from math import inf
 
 class Cell:
     def __init__(self, value, next):
@@ -46,23 +49,9 @@ class LinkedList():
             s += ']'
         return s
 
-if False:
-    l = LinkedList()
-    l.insert(1, 1)
-    l.insert(1, 0)
-    l.insert(-1, 0)
-    l.insert(2, 2)
-    l.insert(3, 0)
-    l.append(4)
-    print(l)
-    l.remove(5)
-    l.remove(4)
-    l.remove(0)
-    print(l)
-
-class SortedList:
+class SortedLinkedList:
     def __init__(self):
-        self.max = 9999
+        self.max = inf
         self.sentinel_end = Cell(+self.max, None)
         self.sentinel_begin = Cell(-self.max, self.sentinel_end)
 
@@ -101,8 +90,22 @@ class SortedList:
             s += ']'
         return s
 
-if True:
-    l = SortedList()
+def ll_check():
+    l = LinkedList()
+    l.insert(1, 1)
+    l.insert(1, 0)
+    l.insert(-1, 0)
+    l.insert(2, 2)
+    l.insert(3, 0)
+    l.append(4)
+    print(l)
+    l.remove(5)
+    l.remove(4)
+    l.remove(0)
+    print(l)
+
+def sorted_ll_check():
+    l = SortedLinkedList()
     l.insert(0)
     l.insert(-1)
     l.insert(2)
@@ -113,3 +116,8 @@ if True:
     l.remove(2)
     l.remove(0)
     print(l)
+
+
+if __name__ == '__main__':
+    ll_check()
+    sorted_ll_check()

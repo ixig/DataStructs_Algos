@@ -1,5 +1,6 @@
-from tkinter.messagebox import NO
-import numpy as np
+'''
+Sparse Array Implementation [TODO]
+'''
 
 class Cell():
     def __init__(self, idx, value, next):
@@ -34,7 +35,7 @@ class AxisLinkedList():
         if cell.idx == idx:
             return cell
         else:
-            cell.value = Cell(idx, AxisLinkedList(f'Row{idx}')
+            cell.value = Cell(idx, AxisLinkedList(f'Row{idx}'))
             return cell
 
 class SparseArray():
@@ -50,13 +51,10 @@ class SparseArray():
         row_ll.set
 
     
-
-if True:
-    sa = SparseArray()
-
-if False:
+if __name__ == '__main__':
     ll = AxisLinkedList('Row')
     ll.set(1, [])
     ll.set(3, [])
     # ll.get(0)
     print(ll.get(1))
+    # sa = SparseArray()

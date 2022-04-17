@@ -1,3 +1,7 @@
+'''
+Pre/Post/In-Order, and BFS, Tree Traversals
+'''
+
 from collections import deque
 from tree_utils import *
 
@@ -34,6 +38,6 @@ print_tree(tree)
 
 print('pre:  ', end=''); preorder(tree); print()
 print('post: ', end=''); postorder(tree); print()
-print('ino:  ', end=''); inorder(tree); print()
+print('inod: ', end=''); inorder(tree); print()
 
 print('BFS:  ', end=''); bfs(tree); print()

@@ -1,3 +1,7 @@
+'''
+Fibonacci, Factorial
+'''
+
 def fib1(n):  # Recursive
     if n <= 1:
         return n

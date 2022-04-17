@@ -1,8 +1,13 @@
+'''
+Bubble Sort
+'''
+
 from sort_check import sort_check, sort_check1
 
 # Optimizations: 
 # i. Alternating directions
 # ii. Sorted Boundaries
+
 def bubble_sort(l):
     start = 0
     stop = len(l) - 1

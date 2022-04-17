@@ -1,3 +1,8 @@
+'''
+Find all possible subsets of given size (sampling without replacement), where
+order does not matter
+'''
+
 # n(C)r: n = # objects in set; r = # objects to choose
 def combinations1(n, r):
 

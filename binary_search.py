@@ -1,4 +1,21 @@
-def binary_search(l, target):
+'''
+Perform Binary Search on a Sorted List, returning (position, value)
+'''
+
+def binary_search1(l, target, offs=0):  # Recursive
+    if not l:
+        return None, None
+    middle = len(l) // 2
+    mid_value = l[middle]
+    if target == mid_value:
+        return offs + middle,  mid_value
+    elif target < mid_value:
+        return binary_search1(l[:middle], target, offs)
+    else:
+        return binary_search1(l[middle + 1:], target, offs + middle + 1)
+    # Tail-Recursion ... which can be easily removed
+
+def binary_search2(l, target):  # Iterative
     left = 0
     right = len(l) - 1
     while left <= right:
@@ -11,7 +28,7 @@ def binary_search(l, target):
         else:
             left = middle + 1
     print(f'ERROR: {target} not found in {l}!')
-
+    return None, None
 
 # l = [1, 2, 3, 4, 5]; print(binary_search(l, 3))
 # l = [1, 2, 3, 4, 5]; print(binary_search(l, 1))
@@ -32,5 +49,7 @@ def search_check(search):
         pos, val = search(l, tgt_val)
         assert val == tgt_val
         assert l[pos] == tgt_val
+    print()
 
-search_check(binary_search)
+search_check(binary_search1)
+search_check(binary_search2)
