@@ -15,13 +15,11 @@ def insert(node: Node, value: int):
     if value > node.value:
         if not node.right:
             node.right = Node(value, None, None)
-            return
         else:
             insert(node.right, value)
     else:
         if not node.left:
             node.left = Node(value, None, None)
-            return
         else:
             insert(node.left, value)
 
@@ -67,20 +65,17 @@ def remove(node: Node, value: int):
 
 from random import choice
 
-if False:
+if True:
     tree, tree_vals = make_tree(10, unique_vals=True, ret_vals=True, sorted=True)
     print_tree(tree)
     print(tree_vals)
-
-if False:
-    print('>', find_rightmost(tree).value)
 
 if False:
     value = choice(list(tree_vals))
     print(value, ':', find(tree, value))
     print(value+1, ':', find(tree, value+1))
 
-if False:
+if True:
     def insert_test(tree: Node, tree_vals):
         while True:
             value = randint(10, 99)
@@ -93,7 +88,10 @@ if False:
     print_tree(tree)
     assert check_sorted(tree)
 
-if True:
+if False:
+    print('>', find_rightmost(tree).value)
+
+if False:
     for _ in range(50):
         print('.', end='')
         tree, tree_vals = make_tree(10, unique_vals=True, ret_vals=True, sorted=True)
