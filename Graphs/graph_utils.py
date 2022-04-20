@@ -25,6 +25,9 @@ class Link:
     def __repr__(self):
         return f"{self.from_node}->{self.to_node} <{self.cost:.3f}>"
 
+    def set_cmpl(self, link: 'Link'):
+        self.cmpl = link
+
 
 class Graph:
     def __init__(self, nodes: List[Node], links: List[Link], directed=True):
@@ -45,6 +48,7 @@ class Graph:
     def check(self):
         if not self.directed:
             for link1 in self.links:
+                assert link1.cmpl in self.links
                 for link2 in self.links:
                     if link2.from_node is link1.to_node and link2.to_node is link1.from_node:
                         break
@@ -91,9 +95,13 @@ def make_graph(num_vertices: int, num_edges: int, connected=True, directed=True)
         if link_exists(from_node, to_node):
             continue
         cost = random()
-        links.append(Link(from_node, to_node, cost))
+        link1 = Link(from_node, to_node, cost)
+        links.append(link1)
         if not directed:
-            links.append(Link(to_node, from_node, cost))
+            link2 = Link(to_node, from_node, cost)
+            links.append(link2)
+            link1.set_cmpl(link2)
+            link2.set_cmpl(link1)
         count_edges -= 1
 
     if connected:
@@ -114,14 +122,7 @@ def make_graph(num_vertices: int, num_edges: int, connected=True, directed=True)
                         link.to_node = node
                 else:
                     link1 = choice(links)
-                    for link2 in links:
-                        # fmt: off
-                        if link2.from_node is link1.to_node and \
-                           link2.to_node is link1.from_node:
-                            link2.from_node.links.remove(link2)
-                            break
-                    else:
-                        assert False
+                    link2 = link1.cmpl
                     link1.to_node = node
                     link2.from_node = node
                     node.links.append(link2)
