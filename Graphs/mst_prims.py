@@ -6,6 +6,23 @@ MST: ST with lowest possible total-cost
 
 from graph_utils import *
 
+
+def make_new_graph(nodes, links):
+    new_nodes, new_links = [], []
+    old2new_nodes = {}
+    for old_node in nodes:
+        new_node = old_node.copy()
+        new_nodes.append(new_node)
+        old2new_nodes[old_node] = new_node
+    for old_link in links:
+        new_link = old_link.copy(
+            old2new_nodes[old_link.from_node], old2new_nodes[old_link.to_node]
+        )
+        new_links.append(new_link)
+        new_link.from_node.links.append(new_link)
+    return Graph(new_nodes, new_links)
+
+
 def mst_prims(graph: Graph, node_idx=0):
     def find_min_link() -> Link:
         links = []
@@ -27,23 +44,13 @@ def mst_prims(graph: Graph, node_idx=0):
         min_links.append(min_link)
         min_nodes.append(min_link.to_node)
 
-    print("Unreachable Nodes:", set(graph.nodes) - set(min_nodes))
+    print("Unreachable Nodes:", set(graph.nodes) - set(min_nodes), end=" ; ")
+    mst_cost = 0
+    for link in min_links:
+        mst_cost += link.cost
+    print("MST Cost:", mst_cost)
 
-    # make new MST graph
-    mst_nodes, mst_links = [], []
-    old2new_nodes = {}
-    for old_node in min_nodes:
-        new_node = old_node.copy()
-        mst_nodes.append(new_node)
-        old2new_nodes[old_node] = new_node
-    for old_link in min_links:
-        new_link = old_link.copy(
-            old2new_nodes[old_link.from_node], old2new_nodes[old_link.to_node]
-        )
-        mst_links.append(new_link)
-        new_link.from_node.links.append(new_link)
-
-    return Graph(mst_nodes, mst_links)
+    return make_new_graph(min_nodes, min_links)
 
 
 # g = make_graph(5, 7, directed=False)
