@@ -1,5 +1,5 @@
 """
-Minimum Spanning Tree (MST) using Prim's Algorithm
+Minimum Spanning Tree (MST) using Kruskals's Algorithm
 """
 
 from graph_utils import *
@@ -37,7 +37,28 @@ def mst_prims(graph: Graph, node_idx=0):
 
     return Graph(mst_nodes, mst_links)
 
+def mst_kruskals(graph: Graph, node_idx=0):
+    def lowest_cost_link() -> Link:
+        min_link = min(links, key=lambda link: link.cost)
+        return min_link
+
+    forest = graph.nodes[:]
+    links = graph.links[:]
+    root = {node: node for node in forest}
+    while links:
+        min_link = lowest_cost_link()
+        links.remove(min_link)
+        from_node = min_link.from_node
+        to_node = min_link.to_node
+        if root[from_node] != root[to_node]:
+            for key_node in root:
+                if root[key_node] == to_node:
+                    root[key_node] = from_node
+        else:
+            print(min_link)
+    print(root)
 
 g = make_graph(5, 7, directed=False)
 print(g)
 print(mst_prims(g, 0))
+print(mst_kruskals(g, 0))

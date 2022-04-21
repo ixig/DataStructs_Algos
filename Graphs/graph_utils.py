@@ -15,6 +15,9 @@ class Node:
     def __repr__(self):
         return str(self.label)
 
+    def copy(self) -> 'Node':
+        return Node(self.label)
+
 
 class Link:
     def __init__(self, from_node: Node, to_node: Node, cost=0):
@@ -23,10 +26,14 @@ class Link:
         self.cost = cost
 
     def __repr__(self):
-        return f"{self.from_node}->{self.to_node} <{self.cost:.3f}>"
+        cost = f'{self.cost}' if isinstance(self.cost, int) else f'{self.cost:.3f}'
+        return f"{self.from_node}->{self.to_node}/{cost}"
 
     def set_cmpl(self, link: 'Link'):
         self.cmpl = link
+
+    def copy(self, from_node: Node, to_node: Node) -> 'Link':
+        return Link(from_node, to_node, self.cost)
 
 
 class Graph:
@@ -41,7 +48,8 @@ class Graph:
         for node in self.nodes:
             s += f"{node.label}: "
             for link in node.links:
-                s += f"{link.to_node}/{link.cost:.3f}, "
+                cost = f'{link.cost}' if isinstance(link.cost, int) else f'{link.cost:.3f}'
+                s += f"{link.to_node}/{cost}, "
             s = s.rstrip(", ") + "\n"
         return s
 
