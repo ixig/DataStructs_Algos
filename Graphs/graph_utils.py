@@ -1,4 +1,4 @@
-"""'
+"""
 Helper Utilities for Creating Graphs
 """
 
@@ -139,10 +139,11 @@ def make_graph(num_vertices: int, num_edges: int, connected=True, directed=True)
     return Graph(nodes, links)
 
 
-def make_sp_graph():
+def make_sp_graph(connected=True):
     from shortest_path import SPNode, SPLink
 
-    node_labels = [label for label in "ABCDEFGHIJKLMNOP"]
+    node_string = "ABCDEFGHIJKLMNOP" if connected else "ABCDEFGHIJKLMNOPQ"
+    node_labels = [label for label in node_string]
     nodes = [SPNode(label) for label in node_labels]
     node_neighbors = {
         "A": [("B", 5), ("E", 10), ("F", 12)],
@@ -161,6 +162,7 @@ def make_sp_graph():
         "N": [("O", 6)],
         "O": [("P", 9)],
         "P": [],
+        "Q": [("A", 1), ("P", 1)],
     }
     label2node = {node.label: node for node in nodes}
     links = []
@@ -178,5 +180,6 @@ if __name__ == "__main__":
     print(graph)
     graph = make_graph(5, 7, directed=False)
     print(graph)
-    graph = make_sp_graph()
+    graph = make_sp_graph(connected=True)
+    graph = make_sp_graph(connected=False)
     print(graph)
