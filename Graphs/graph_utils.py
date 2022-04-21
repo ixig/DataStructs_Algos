@@ -138,8 +138,45 @@ def make_graph(num_vertices: int, num_edges: int, connected=True, directed=True)
         link.from_node.links.append(link)
     return Graph(nodes, links)
 
+
+def make_sp_graph():
+    from shortest_path import SPNode, SPLink
+
+    node_labels = [label for label in "ABCDEFGHIJKLMNOP"]
+    nodes = [SPNode(label) for label in node_labels]
+    node_neighbors = {
+        "A": [("B", 5), ("E", 10), ("F", 12)],
+        "B": [("C", 5), ("F", 11), ("A", 4)],
+        "C": [("D", 7), ("G", 10)],
+        "D": [("H", 11)],
+        "E": [("F", 5), ("I", 9)],
+        "F": [("G", 5), ("J", 11), ("K", 12)],
+        "G": [("H", 6), ("K", 12), ("B", 4)],
+        "H": [("L", 14), ("G", 5)],
+        "I": [("J", 6), ("M", 10)],
+        "J": [("K", 6), ("N", 12)],
+        "K": [("L", 10), ("O", 15)],
+        "L": [("P", 7)],
+        "M": [("N", 7)],
+        "N": [("O", 6)],
+        "O": [("P", 9)],
+        "P": [],
+    }
+    label2node = {node.label: node for node in nodes}
+    links = []
+    for node in nodes:
+        for neighbor_tup in node_neighbors[node.label]:
+            link = SPLink(node, label2node[neighbor_tup[0]], neighbor_tup[1])
+            links.append(link)
+            node.links.append(link)
+    # print(nodes, links)
+    return Graph(nodes, links)
+
+
 if __name__ == "__main__":
     graph = make_graph(5, 7, directed=True)
     print(graph)
     graph = make_graph(5, 7, directed=False)
+    print(graph)
+    graph = make_sp_graph()
     print(graph)
