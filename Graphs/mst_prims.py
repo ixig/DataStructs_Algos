@@ -25,24 +25,26 @@ def make_new_graph(nodes, links):
 
 def mst_prims(graph: Graph, node_idx=0):
     def find_min_link() -> Link:
-        links = []
-        for node in min_nodes:
-            links.extend([link for link in node.links if link.to_node not in min_nodes])
-        if links:
-            min_link = min(links, key=lambda link: link.cost)
-            return min_link
-        else:
-            return None
+        return out_links and min(out_links, key=lambda link: link.cost)
+
+    def remove_inside_links() -> None:
+        remove = []
+        for link in out_links:
+            if link.to_node in min_nodes:
+                remove.append(link)
+        for link in remove:
+            out_links.remove(link)
 
     min_nodes = [graph.nodes[node_idx]]
     min_links = []
+    out_links = graph.nodes[node_idx].links[:]
 
-    for _ in range(len(graph.nodes) - 1):
+    while out_links:
         min_link = find_min_link()
-        if not min_link:
-            break
         min_links.append(min_link)
         min_nodes.append(min_link.to_node)
+        out_links.extend(min_link.to_node.links)
+        remove_inside_links()
 
     print("Unreachable Nodes:", set(graph.nodes) - set(min_nodes), end=" ; ")
     mst_cost = 0
