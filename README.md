@@ -1,4 +1,4 @@
-# Data Structures and Algorithmns in Python
+# Data Structures and Algorithms in Python
 
 ## Generic Data Structures
 | Filename | Description |
@@ -10,7 +10,6 @@
 | [sparse_array](DataStructs/sparse_array.py) | Sparse Array Implementation[TODO] |
 | [triangular_array](DataStructs/triangular_array.py) | Triangular Array Implementation |
 <br>
----
 
 ## Graph Alogrithms
 | Filename | Description |
@@ -21,7 +20,6 @@
 | [mst_prims](Graphs/mst_prims.py) | Minimum Spanning Tree (MST) using Prim's Algorithm |
 | [shortest_path](Graphs/shortest_path.py) | Find Shortest Paths using Label Setting |
 <br>
----
 
 ## Tree Algorithms
 | Filename | Description |
@@ -30,7 +28,6 @@
 | [sorted_binary_tree](Trees/sorted_binary_tree.py) | Find/Insert/Remove Nodes from Sorted Binary Tree |
 | [tree_traversals](Trees/tree_traversals.py) | Pre/Post/In-Order, and BFS, Tree Traversals |
 <br>
----
 
 ## Sorting Algorithms
 | Filename | Description |
@@ -44,7 +41,6 @@
 | [quick_sort](Sorting/quick_sort.py) | Quick Sort |
 | [selection_sort](Sorting/selection_sort.py) | Selection Sort |
 <br>
----
 
 ## Numerical Algorithms
 | Filename | Description |
@@ -55,7 +51,6 @@
 | [prime_factors](Numerical/prime_factors.py) | Prime Factorization |
 | [primes](Numerical/primes.py) | Finding and Testing Primes |
 <br>
----
 
 ## Specific Problems
 | Filename | Description |
